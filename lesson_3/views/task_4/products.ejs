@@ -1,0 +1,20 @@
+<h2>Таблиця продуктів</h2>
+<table border="1">
+  <tr><th>ID</th><th>Назва</th><th>Ціна</th></tr>
+  <% products.forEach(p => { %>
+    <tr>
+      <td><%= p.id %></td>
+      <td><%= p.name %></td>
+      <td><%= p.price %></td>
+    </tr>
+  <% }) %>
+</table>
+
+<h2>Список продуктів</h2>
+<ul>
+  <% products.forEach(p => { %>
+    <li><%= p.name %> — <%= p.price %> грн</li>
+  <% }) %>
+</ul>
+
+<a href="/">Назад</a>
