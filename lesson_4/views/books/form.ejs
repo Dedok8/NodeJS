@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+  <header>
+    <%- include('../components/header', { activePage: 'create' }) %>
+  </header>
+
+  <main>
+    <h1><%= title %></h1>
+
+    <form action="<%= book.id ? '/books/' + book.id : '/books' %>" method="POST">
+      <label>Book Title:
+        <input type="text" name="title" value="<%= book.title || '' %>" required>
+      </label>
+
+      <label>Author:
+        <input type="text" name="author" value="<%= book.author || '' %>" required>
+      </label>
+
+      <label>Year:
+        <input type="number" name="year" value="<%= book.year || '' %>" required>
+      </label>
+
+      <button type="submit"><%= book.id ? 'Update' : 'Create' %> Book</button>
+      <a href="/books" style="display: inline-block; padding: 10px 20px; background-color: #95a5a6; color: white; border-radius: 4px; text-decoration: none;">← Back</a>
+    </form>
+  </main>
+
+
+</body>
+</html>

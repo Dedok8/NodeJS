@@ -1,0 +1,310 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font:
+    14px "Lucida Grande",
+    Helvetica,
+    Arial,
+    sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Header and Navigation */
+header {
+  background-color: #2c3e50;
+  padding: 20px 0;
+  margin-bottom: 20px;
+}
+
+.header__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.nav__list {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.nav__item a {
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  display: inline-block;
+  background-color: #1a1a1a;
+}
+
+.nav__item a:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+.nav__item a.active {
+  background-color: #000;
+  color: #fff;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  border-bottom: 3px solid #ffcc00;
+  padding-bottom: 5px;
+}
+
+/* Main Content */
+main,
+body > * {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Headings */
+h1 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+h2 {
+  color: #34495e;
+  margin: 20px 0 10px 0;
+  font-size: 22px;
+}
+
+/* Links */
+a {
+  color: #00b7ff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #0088cc;
+  text-decoration: underline;
+}
+
+/* Forms */
+form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #00b7ff;
+  box-shadow: 0 0 8px rgba(0, 183, 255, 0.3);
+}
+
+/* Buttons */
+button,
+[type="submit"] {
+  background-color: #00b7ff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+button:hover,
+[type="submit"]:hover {
+  background-color: #0088cc;
+}
+
+button:active,
+[type="submit"]:active {
+  transform: scale(0.98);
+}
+
+button[type="submit"] {
+  margin-top: 10px;
+}
+
+/* Books List */
+ul {
+  list-style: none;
+}
+
+ul li {
+  background-color: #fff;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+ul li:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Search Form Styling */
+form[method="GET"] {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+form[method="GET"] input {
+  margin-bottom: 0;
+}
+
+form[method="GET"] button {
+  height: 40px;
+  padding: 10px 20px;
+}
+
+@media (max-width: 768px) {
+  form[method="GET"] {
+    grid-template-columns: 1fr;
+  }
+
+  form[method="GET"] button {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Inline Forms (Delete Button) */
+form[style*="display:inline"] {
+  display: inline !important;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+  margin-right: 5px;
+}
+
+form[style*="display:inline"] button {
+  background-color: #e74c3c;
+  padding: 6px 12px;
+  font-size: 12px;
+  margin: 0;
+}
+
+form[style*="display:inline"] button:hover {
+  background-color: #c0392b;
+}
+
+/* Info Page */
+.book-info {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.book-info p {
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.book-info strong {
+  color: #2c3e50;
+  min-width: 100px;
+  display: inline-block;
+}
+
+/* Horizontal Rule */
+hr {
+  border: none;
+  height: 1px;
+  background-color: #ddd;
+  margin: 20px 0;
+}
+
+/* Footer */
+footer {
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  padding: 20px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+footer p {
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav__list {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  form {
+    padding: 15px;
+  }
+
+  body {
+    padding: 0;
+  }
+}
+
+/* Utility Classes */
+.text-center {
+  text-align: center;
+}
+
+.margin-top {
+  margin-top: 20px;
+}
+
+.margin-bottom {
+  margin-bottom: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
