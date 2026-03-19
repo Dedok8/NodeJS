@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+  <header>
+    <%- include('../components/header', { activePage: 'books' }) %>
+  </header>
+
+  <main>
+    <h1><%= book.title %></h1>
+    
+    <div class="book-info">
+      <p>
+        <strong>Author:</strong> <%= book.author %>
+      </p>
+      <p>
+        <strong>Year:</strong> <%= book.year %>
+      </p>
+      
+      <div style="margin-top: 20px;">
+        <a href="/books/edit/<%= book.id %>">Edit</a> | 
+        <a href="/books">← Back to List</a>
+      </div>
+    </div>
+  </main>
+
+
+</body>
+</html>

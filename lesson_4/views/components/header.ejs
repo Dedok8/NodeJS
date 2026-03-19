@@ -1,0 +1,24 @@
+<div class="header__container">
+  <nav class="header__nav nav">
+    <ul class="nav__list">
+      <li class="nav__item">
+        <a href="/" class="<%= activePage === 'home' ? 'active' : '' %>"
+          >Home</a
+        >
+      </li>
+      <li class="nav__item">
+        <a href="/books" class="<%= activePage === 'books' ? 'active' : '' %>"
+          >Books</a
+        >
+      </li>
+      <li class="nav__item">
+        <a
+          href="/books/create"
+          class="<%= activePage === 'create' ? 'active' : '' %>"
+          >Add Book</a
+        >
+      </li>
+    </ul>
+  </nav>
+</div>
+<hr />
