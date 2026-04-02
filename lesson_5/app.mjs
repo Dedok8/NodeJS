@@ -20,6 +20,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "uploads")));
+
+app.get("/stylesheets/:file", (req, res) => {
+  const options = { root: path.join(__dirname, "public/stylesheets") };
+  res.type("text/css");
+  res.sendFile(req.params.file, options, (err) => {
+    if (err) res.status(404).send("File not found");
+  });
+});
+
 app.use("/", indexRouter);
 app.use("/cars", carsRouter);
 
