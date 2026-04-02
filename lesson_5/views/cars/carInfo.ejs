@@ -1,0 +1,24 @@
+<%- include('../components/header', { title: "Інформація про авто" }) %>
+
+<h1>Детальна інформація</h1>
+
+<div class="car-info">
+   <img src="/<%= car.image %>" alt="<%= car.brand %>">
+
+    <div class="car-details">
+        <h2><%= car.brand %></h2>
+        <p>Рік: <%= car.year %></p>
+        <p>Номер: <%= car.plate %></p>
+
+        <div class="actions">
+            <a href="/cars">⬅ Назад</a>
+            <a href="/cars/edit/<%= car.id %>">Редагувати</a>
+
+            <form action="/cars/delete/<%= car.id %>" method="POST">
+                <button type="submit">Видалити</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('../components/footer') %>
