@@ -1,0 +1,32 @@
+<%- include('../components/header', { title: car ? "Редагування авто" : "Додавання авто" }) %>
+
+<h1><%= car ? "Редагувати авто" : "Додати авто" %></h1>
+
+<% if (locals.errors && errors.length > 0) { %>
+    <ul class="errors">
+    <% errors.forEach(err => { %>
+        <li><%= err %></li>
+    <% }) %>
+    </ul>
+<% } %>
+
+<form action="<%= car ? '/cars/' + car.id : '/cars' %>" method="POST" enctype="multipart/form-data">
+    <label>Марка авто:</label>
+    <input type="text" name="brand" value="<%= car ? car.brand : '' %>" required>
+
+    <label>Рік випуску:</label>
+    <input type="number" name="year" value="<%= car ? car.year : '' %>" required>
+
+    <label>Номер авто:</label>
+    <input type="text" name="plate" value="<%= car ? car.plate : '' %>" required>
+
+    <label>Зображення:</label>
+    <input type="file" name="image" value="<%= car ? car.image : '' %>" required>
+
+    <div class="actions">
+        <button type="submit"><%= car ? "Зберегти" : "Додати" %></button>
+        <a href="/cars">Скасувати</a>
+    </div>
+</form>
+
+<%- include('../components/footer') %>

@@ -1,0 +1,43 @@
+<%- include('../components/header', { title: car ? "Редагування авто" : "Додавання авто" }) %>
+
+<h1><%= car ? "Редагувати авто" : "Додати авто" %></h1>
+
+    <div class="errors container">
+        <% if (errors?.length) { %>
+        <h2>Помилки при заповненні даних</h2>
+
+        <ul>
+        <% for (const error of errors) { %>
+        <li><%= error.msg %></li>
+        <% } %>
+        </ul>
+
+        <hr>
+        <% } %>
+    </div>
+
+<form action="<%= car ? '/cars/' + car.id : '/cars' %>" method="POST" enctype="multipart/form-data">
+
+    <% if (car?.id) { %>
+        <input type="hidden" name="id" value="<%= car.id %>">
+    <% } %>
+
+    <label>Марка авто:</label>
+    <input type="text" name="brand" value="<%= car ? car.brand : '' %>" required>
+
+    <label>Рік випуску:</label>
+    <input type="number" name="year" value="<%= car ? car.year : '' %>" required>
+
+    <label>Номер авто:</label>
+    <input type="text" name="plate" value="<%= car ? car.plate : '' %>" required>
+
+    <label>Зображення:</label>
+    <input type="file" name="image" value="<%= car ? car.image : '' %>" required>
+
+    <div class="actions">
+        <button type="submit"><%= car ? "Зберегти" : "Додати" %></button>
+        <a href="/cars">Скасувати</a>
+    </div>
+</form>
+
+<%- include('../components/footer') %>
