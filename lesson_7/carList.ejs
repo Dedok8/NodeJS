@@ -1,0 +1,33 @@
+<%- include('../components/header', { title: "Список авто" }) %>
+
+<h1>Список автомобілів</h1>
+
+<a href="/cars/add">➕ Додати авто</a>
+
+<div class="car-container">
+    <% if (cars.length === 0) { %>
+        <p>Авто відсутні</p>
+    <% } %>
+
+    <% cars.forEach(car => { %>
+        <div class="car-card">
+            <a href="/cars/<%= car.id %>">
+                <img src="/<%= car.image %>" alt="<%= car.brand %>">
+            </a>
+
+            <h3><%= car.brand %></h3>
+            <p>Рік: <%= car.year %></p>
+            <p>Номер: <%= car.plate %></p>
+
+            <div class="actions">
+                <a href="/cars/edit/<%= car.id %>">Редагувати</a>
+
+                <form action="/cars/delete/<%= car.id %>" method="POST">
+                    <button type="submit">Видалити</button>
+                </form>
+            </div>
+        </div>
+    <% }) %>
+</div>
+
+<%- include('../components/footer') %>
