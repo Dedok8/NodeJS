@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Список автомобілів</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/">Головна</a>
+      <a href="/cars">Автомобілі</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Список автомобілів</h1>
+    <a href="/cars/add">Додати авто</a>
+
+    <% if (cars.length === 0) { %>
+      <p>Автомобілів поки немає</p>
+    <% } else { %>
+      <table>
+        <thead>
+          <tr>
+            <th>Марка</th>
+            <th>Рік</th>
+            <th>Номер</th>
+            <th>Тип</th>
+            <th>Дії</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% cars.forEach(car => { %>
+            <tr>
+              <td><%= car.brand %></td>
+              <td><%= car.year %></td>
+              <td><%= car.plateNumber %></td>
+              <td><%= car.type ? car.type.name : '—' %></td>
+              <td>
+                <a href="/cars/add/<%= car._id %>">Редагувати</a>
+                <button class="delete-btn" data-id="<%= car._id %>">Видалити</button>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } %>
+  </main>
+
+  <script>
+    document.querySelectorAll('.delete-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const id = btn.dataset.id;
+        await fetch('/cars', {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id })
+        });
+        location.reload();
+      });
+    });
+  </script>
+</body>
+</html>

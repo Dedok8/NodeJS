@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title><%= data ? 'Редагувати авто' : 'Додати авто' %></title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/">Головна</a>
+      <a href="/cars">Автомобілі</a>
+    </nav>
+  </header>
+  <main>
+    <h1><%= data ? 'Редагувати авто' : 'Додати авто' %></h1>
+
+    <% if (errors && errors.length > 0) { %>
+      <ul class="errors">
+        <% errors.forEach(err => { %>
+          <li><%= err %></li>
+        <% }) %>
+      </ul>
+    <% } %>
+
+    <form method="POST" action="<%= data ? '/cars/add/' + data._id : '/cars/add' %>">
+      <div>
+        <label>Марка</label>
+        <input type="text" name="brand" value="<%= data ? data.brand : '' %>">
+      </div>
+      <div>
+        <label>Рік</label>
+        <input type="number" name="year" value="<%= data ? data.year : '' %>">
+      </div>
+      <div>
+        <label>Номерний знак</label>
+        <input type="text" name="plateNumber" value="<%= data ? data.plateNumber : '' %>">
+      </div>
+      <div>
+        <label>Тип</label>
+        <select name="type">
+          <option value="">— Оберіть тип —</option>
+          <% if (typesList && typesList.length > 0) { %>
+            <% typesList.forEach(t => { %>
+              <option value="<%= t._id %>" <%= data && data.type == t._id ? 'selected' : '' %>>
+                <%= t.name %>
+              </option>
+            <% }) %>
+          <% } %>
+        </select>
+      </div>
+      <button type="submit"><%= data ? 'Зберегти' : 'Додати' %></button>
+      <a href="/cars">Скасувати</a>
+    </form>
+  </main>
+</body>
+</html>
