@@ -1,0 +1,51 @@
+<h1>Список товарів</h1>
+<a href="/products/create">Додати товар</a>
+
+
+
+<div class="sort-controls">
+  <span>Сортувати за:</span>
+  <a href="/products?sortBy=price&order=1&<%= new URLSearchParams(currentFilter).toString() %>"
+     class="<%= currentSort.sortBy === 'price' && currentSort.order === '1' ? 'active' : '' %>">
+    Ціна ↑
+  </a>
+  <a href="/products?sortBy=price&order=-1&<%= new URLSearchParams(currentFilter).toString() %>"
+     class="<%= currentSort.sortBy === 'price' && currentSort.order === '-1' ? 'active' : '' %>">
+    Ціна ↓
+  </a>
+  <a href="/products?sortBy=name&order=1&<%= new URLSearchParams(currentFilter).toString() %>"
+     class="<%= currentSort.sortBy === 'name' && currentSort.order === '1' ? 'active' : '' %>">
+    Назва ↑
+  </a>
+  <a href="/products?sortBy=name&order=-1&<%= new URLSearchParams(currentFilter).toString() %>"
+     class="<%= currentSort.sortBy === 'name' && currentSort.order === '-1' ? 'active' : '' %>">
+    Назва ↓
+  </a>
+  <a href="/products?sortBy=count&order=1&<%= new URLSearchParams(currentFilter).toString() %>"
+     class="<%= currentSort.sortBy === 'count' && currentSort.order === '1' ? 'active' : '' %>">
+    Кількість ↑
+  </a>
+  <a href="/products?sortBy=count&order=-1&<%= new URLSearchParams(currentFilter).toString() %>"
+     class="<%= currentSort.sortBy === 'count' && currentSort.order === '-1' ? 'active' : '' %>">
+    Кількість ↓
+  </a>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Назва</th>
+      <th>Ціна</th>
+      <th>Кількість</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% products.forEach(product => { %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.price %> грн</td>
+        <td><%= product.count %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>

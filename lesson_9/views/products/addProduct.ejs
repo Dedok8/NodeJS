@@ -1,0 +1,25 @@
+<h1>Додати товар</h1>
+
+<% if (locals.validationErrors) { %>
+  <ul class="errors">
+    <% validationErrors.forEach(err => { %>
+      <li><%= err %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<form action="/products/create" method="POST">
+  <div>
+    <label>Назва</label>
+    <input type="text" name="name" value="<%= locals.body?.name ?? '' %>">
+  </div>
+  <div>
+    <label>Ціна</label>
+    <input type="number" name="price" step="0.01" value="<%= locals.body?.price ?? '' %>">
+  </div>
+  <div>
+    <label>Кількість</label>
+    <input type="number" name="count" value="<%= locals.body?.count ?? '' %>">
+  </div>
+  <button type="submit">Додати</button>
+</form>
