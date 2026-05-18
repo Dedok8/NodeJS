@@ -18,7 +18,6 @@ app.use(sessionConfig);
 
 // Парсери
 app.use(express.json());
-app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
 
 // Шаблони і статика
@@ -38,6 +37,6 @@ app.use("/", userRouter);
 // Error handler
 app.use(errorHandler);
 
-app.listen(config.port, () => {
+app.listen(config.port || 3000, () => {
   console.log(`Server is running on http://localhost:${config.port}`);
 });
