@@ -1,0 +1,14 @@
+npm init -y
+
+npm install express mongoose ejs zod dotenv express-session nodemon
+
+"type": "module"
+
+  "scripts": {
+    "start": "node app.mjs"
+  },
+
+mkdir controllers,db,models,services,routes,middlewares,validation,config,public,views
+mkdir public/javascripts,public/stylesheets
+
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"

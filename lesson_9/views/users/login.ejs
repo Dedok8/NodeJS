@@ -11,11 +11,11 @@
 <form action="/login" method="POST">
   <div>
     <label>Ім'я</label>
-    <input type="text" name="name" value="<%= locals.body?.name ?? '' %>">
+    <input type="text" name="name" required value="<%= locals.body?.name ?? '' %>">
   </div>
   <div>
     <label>Пароль</label>
-    <input type="password" name="password">
+    <input type="password" name="password" required>
   </div>
   <button type="submit">Увійти</button>
 </form>

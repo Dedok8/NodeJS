@@ -11,13 +11,13 @@
 <form action="/register" method="POST">
   <div>
     <label>Ім'я</label>
-    <input type="text" name="name" value="<%= locals.body?.name ?? '' %>">
+    <input type="text" name="name" required value="<%= locals.body?.name ?? '' %>">
   </div>
   <div>
     <label>Пароль</label>
-    <input type="password" name="password">
+    <input type="password" name="password" required>
   </div>
-  <button type="submit">Зареєструватись</button>
+  <button type="submit" >Зареєструватись</button>
 </form>
 
 <a href="/login">Вже є акаунт? Увійти</a>
