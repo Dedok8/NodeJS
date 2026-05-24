@@ -6,6 +6,8 @@ import { errorHandler } from "./middleware/errorHandler.mjs";
 
 const app = express();
 
+app.set("trust proxy", 1);
+
 connectDB();
 
 middleware(app);

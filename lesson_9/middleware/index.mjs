@@ -17,12 +17,12 @@ const middleware = (app) => {
   app.use(loggerConfig);
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
-  app.use(cookieParser());
 
   app.use(express.static(path.join(__dirname, "../public")));
   app.use(express.static(path.join(__dirname, "../uploads")));
 
   app.use(sessionConfig);
+  app.use(cookieParser());
   app.use(passport.initialize());
   app.use(passport.session());
   app.use((req, res, next) => {
