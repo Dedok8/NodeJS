@@ -6,6 +6,14 @@ class UserDBServices extends MongooseCRUDManager {
     super(User);
   }
 
+  async getById(id) {
+    try {
+      return await this.model.findById(id);
+    } catch (error) {
+      throw new Error("Помилка пошуку користувача: " + error.message);
+    }
+  }
+
   async getUserList(filter = {}) {
     try {
       return await super.getList(filter);

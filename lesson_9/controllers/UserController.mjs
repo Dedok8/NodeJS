@@ -1,6 +1,6 @@
 import UserDBServices from "../models/Users/UserDBServices.mjs";
 import sanitizedUserInput from "../validation/Users/UserSanitizer.mjs";
-import bcrypt from "bcrypt";
+import passport from "../config/passport.mjs";
 class UserController {
   static async renderUserList(req, res) {
     try {
@@ -15,7 +15,7 @@ class UserController {
     res.render("users/login", { activePage: "login" });
   }
 
-  static async login(req, res) {
+  static async login(req, res, next) {
     if (req.validationErrors) {
       return res.status(400).render("users/login", {
         activePage: "login",
@@ -23,28 +23,21 @@ class UserController {
         body: req.body,
       });
     }
-    try {
-      const sanitizedData = sanitizedUserInput(req.body);
-      const user = await UserDBServices.getUserByName(sanitizedData.name);
 
+    passport.authenticate("local", (err, user, info) => {
+      if (err) return next(err);
       if (!user) {
-        return res.status(400).send("Користувача не знайдено");
+        return res.status(400).render("users/login", {
+          activePage: "login",
+          validationErrors: [info.message],
+          body: req.body,
+        });
       }
-
-      const isMatch = await bcrypt.compare(
-        sanitizedData.password,
-        user.password
-      );
-      if (!isMatch) {
-        return res.status(400).send("Невірний пароль");
-      }
-
-      req.session.username = sanitizedData.name;
-      req.session.sort = { price: 1 };
-      res.redirect("/products");
-    } catch (error) {
-      res.status(400).send(error.message);
-    }
+      req.logIn(user, (err) => {
+        if (err) return next(err);
+        res.redirect("/products");
+      });
+    })(req, res, next);
   }
 
   static renderRegisterForm(req, res) {

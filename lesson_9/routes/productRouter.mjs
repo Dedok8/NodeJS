@@ -1,12 +1,18 @@
 import { Router } from "express";
 import ProductController from "../controllers/ProductController.mjs";
 import ProductValidator from "../validation/Products/ProductValidationSchema.mjs";
+import { ensureAuthenticated } from "../middleware/auth.mjs";
 
 const router = new Router();
 
-router.get("/", ProductController.renderProductList);
-router.get("/create", ProductController.addProductForm);
+router.get("/", ensureAuthenticated, ProductController.renderProductList);
+router.get("/create", ensureAuthenticated, ProductController.addProductForm);
 
-router.post("/create", ProductValidator.validate, ProductController.addProduct);
+router.post(
+  "/create",
+  ensureAuthenticated,
+  ProductValidator.validate,
+  ProductController.addProduct
+);
 
 export default router;

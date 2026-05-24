@@ -2,7 +2,7 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import cookieParser from "cookie-parser";
-import passport from "passport";
+import passport from "../config/passport.mjs";
 import flash from "connect-flash";
 import loggerConfig from "../config/logger.mjs";
 import sessionConfig from "../config/sessionConfig.mjs";
@@ -25,6 +25,10 @@ const middleware = (app) => {
   app.use(sessionConfig);
   app.use(passport.initialize());
   app.use(passport.session());
+  app.use((req, res, next) => {
+    res.locals.user = req.user || null;
+    next();
+  });
   app.use(flash());
 };
 

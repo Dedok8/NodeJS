@@ -1,14 +1,10 @@
 <nav>
-  <a class="<%= activePage === 'products' ? 'active' : '' %>" href="/products"
-    >Товари</a
-  >
-  <a class="<%= activePage === 'users' ? 'active' : '' %>" href="/users"
-    >Користувачі</a
-  >
-  <a class="<%= activePage === 'login' ? 'active' : '' %>" href="/login"
-    >Логін</a
-  >
-  <a class="<%= activePage === 'register' ? 'active' : '' %>" href="/register"
-    >Реєстрація</a
-  >
+  <a class="<%= activePage === 'products' ? 'active' : '' %>" href="/products">Товари</a>
+  <a class="<%= activePage === 'users' ? 'active' : '' %>" href="/users">Користувачі</a>
+  <% if (locals.user) { %>
+    <a href="/logout">Вийти (<%= user.name %>)</a>
+  <% } else { %>
+    <a class="<%= activePage === 'login' ? 'active' : '' %>" href="/login">Логін</a>
+    <a class="<%= activePage === 'register' ? 'active' : '' %>" href="/register">Реєстрація</a>
+  <% } %>
 </nav>

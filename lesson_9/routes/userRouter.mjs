@@ -9,6 +9,13 @@ router.get("/users", UserController.renderUserList);
 router.get("/login", UserController.renderLoginForm);
 router.post("/login", UserValidator.validate, UserController.login);
 
+router.get("/logout", (req, res, next) => {
+  req.logout((err) => {
+    if (err) return next(err);
+    res.redirect("/login");
+  });
+});
+
 router.get("/register", UserController.renderRegisterForm);
 router.post("/register", UserValidator.validate, UserController.register);
 
