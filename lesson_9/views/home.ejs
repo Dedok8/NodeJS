@@ -1,2 +1,15 @@
-<h1>Ласкаво просимо до магазину</h1>
-<a href="/products">Перейти до товарів</a>
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <title><%= typeof title !== 'undefined' ? title : 'Магазин' %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <%- include('partials/header') %>
+    <main>
+      <h1>Ласкаво просимо до магазину</h1>
+      <a href="/products">Перейти до товарів</a>
+    </main>
+  </body>
+</html>

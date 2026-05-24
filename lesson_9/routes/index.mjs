@@ -1,7 +1,26 @@
-import { Router } from "express";
-const router = Router();
-router.get("/", (req, res) => {
-  res.render("home", { title: "Home", activePage: "home" });
-});
+import homeRouter from "./homeRouter.mjs";
+import productRouter from "./productRouter.mjs";
+import userRouter from "./userRouter.mjs";
 
-export default router;
+const routerConfig = [
+  {
+    path: "/",
+    router: homeRouter,
+  },
+  {
+    path: "/products",
+    router: productRouter,
+  },
+  {
+    path: "/",
+    router: userRouter,
+  },
+];
+
+function initRouter(app) {
+  for (const config of routerConfig) {
+    app.use(config.path, config.router);
+  }
+}
+
+export default initRouter;

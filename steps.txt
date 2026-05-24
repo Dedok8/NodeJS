@@ -1,6 +1,6 @@
 npm init -y
 
-npm install express mongoose ejs zod dotenv express-session nodemon
+npm install express mongoose ejs zod dotenv express-session nodemon cookie-parser connect-flash passport morgan bcrypt
 
 "type": "module"
 

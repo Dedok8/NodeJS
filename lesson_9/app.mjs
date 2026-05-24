@@ -1,42 +1,21 @@
 import express from "express";
-import expressLayouts from "express-ejs-layouts";
-import config from "./config/default.mjs";
-import { viewsDir, publicDir } from "./config/paths.mjs";
-import { errorHandler } from "./middlewares/errorHandler.mjs";
-import indexRouter from "./routes/index.mjs";
-import productRouter from "./routes/productRouter.mjs";
-import userRouter from "./routes/userRouter.mjs";
-import sessionConfig from "./config/session.mjs";
-
 import connectDB from "./db/db.mjs";
+import middleware from "./middleware/index.mjs";
+import router from "./routes/index.mjs";
+import { errorHandler } from "./middleware/errorHandler.mjs";
 
 const app = express();
 
 connectDB();
 
-app.use(sessionConfig);
+middleware(app);
 
-// Парсери
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+router(app);
 
-// Шаблони і статика
-app.set("view engine", "ejs");
-app.set("views", viewsDir);
-app.use(express.static(publicDir));
-
-// Layouts
-app.use(expressLayouts);
-app.set("layout", "index");
-
-// Роути
-app.use("/", indexRouter);
-app.use("/products", productRouter);
-app.use("/", userRouter);
-
-// Error handler
 app.use(errorHandler);
 
-app.listen(config.port || 3000, () => {
-  console.log(`Server is running on http://localhost:${config.port}`);
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });
